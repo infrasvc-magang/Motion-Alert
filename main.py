@@ -33,12 +33,12 @@ ret, frame2 = cap.read()
 #notify
 def alert1(): #alert dengan WhatsApp Group
     myobj = datetime.now()
-    pywhatkit.sendwhatmsg_to_group("KGJ5Jc0nRWnIEsIH3MhdCs", "Motion detected at " + str(myobj.hour) + ":"+ str(myobj.minute)+ ", please check." , myobj.hour , myobj.minute+1 , 10, True, 5)
+    pywhatkit.sendwhatmsg_to_group("Group_ID", "Motion detected at " + str(myobj.hour) + ":"+ str(myobj.minute)+ ", please check." , myobj.hour , myobj.minute+1 , 10, True, 5)
 
 def alert2(): #alert dengan Telegram Group
     myobj = datetime.now()
-    token = '6161387808:AAHsSfsiA8i19VYG3J0Q95Itg3WJLttRgIc'
-    receiver_id = '-852760651'
+    token = 'Group_Token'
+    receiver_id = 'Chat_ID'
     text = "Motion detected at " + str(myobj.hour) + ":"+ str(myobj.minute)+ ", please check."
 
     bot = telepot.Bot(token)
