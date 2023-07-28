@@ -9,7 +9,7 @@ import os
 
 # Initialize parameters
 is_recording = False
-folder_path = 'recordingsISR'
+folder_path = '/folder_path'
 days_threshold = 30
 
 # System starts
@@ -29,12 +29,6 @@ cv2.imshow("Lab ISR", frame1)
 frame1 = frame2
 ret, frame2 = cap.read()
 
-#notify
-def alert():
-    myobj = datetime.now()
-    pywhatkit.sendwhatmsg_to_group("KGJ5Jc0nRWnIEsIH3MhdCs", "Motion detected at " + str(myobj.hour) + ":"+ str(myobj.minute)+ ", please check." , myobj.hour , myobj.minute+1 , 10, True, 5)
-    # k.tap_key('Enter')
-    # pywhatkit.sendwhatmsg("+6285291612998", "test 1 2 3", myobj.hour , myobj.minute+1)
 
 # Motion Detection 
 def motion_detecting():
@@ -58,8 +52,7 @@ def motion_detecting():
                 cv2.putText(frame1, "Status: {}".format('Ada maling euy.....'), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 date1 = str(datetime.now())
                 cv2.putText(frame1, date1, (10,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2)
-                # t = threading.Thread(target=alert, args=())
-                # t.start()
+               
                 
                 print("is it blocking?")
                 alert()
@@ -101,21 +94,16 @@ def stop_video_recording():
 #scheduling
 def run_scheduling():
     print("masuk sini....")
-    # Run the delete_old_files function every day at a specific time (e.g., 3:00 AM)
-    # schedule.every().day.at('16:00').do(delete_old_files, folder_path=folder_path, days_threshold=days_threshold)
 
     # Jadwalkan proses rekaman video pada pukul 17:00
-    schedule.every().day.at('11:09').do(start_video_recording)
-    schedule.every().day.at('11:09').do(motion_detecting)
-    # schedule.every().day.at('17:00').do(alert)
+    schedule.every().day.at('17:00').do(start_video_recording)
+    schedule.every().day.at('17:00').do(motion_detecting)
 
-    # Jadwalkan proses deteksi motion setiap 5 menit
-    # schedule.every(5).minutes.do(motion_detected)
 
     # Jadwalkan berhenti merekam video pada pukul 9:00 keesokan harinya
-    #schedule.every().day.at('02:23').do(stop_video_recording)
+    schedule.every().day.at('09:00').do(stop_video_recording)
     #schedule.every(1).minutes.do(stop_video_recording)
-    # schedule.every().day.at('09:00').do(alert)
+
 
     while True:
         print("masuk sini juga...")
