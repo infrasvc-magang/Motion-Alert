@@ -5,7 +5,7 @@ import schedule
 from datetime import date
 from datetime import datetime
 import pywhatkit 
-import os
+# import os
 import telepot
 
 # Initialize parameters
@@ -123,17 +123,17 @@ def run_scheduling():
         time.sleep(1)
 
 
-#delete file > 30 days
-def delete_old_files(folder_path, days_threshold):
-    today = datetime.now()
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
-        if os.path.isfile(file_path):
-            creation_time = datetime.fromtimestamp(os.path.getctime(file_path))
-            age_in_days = (today - creation_time).days
-            if age_in_days > days_threshold:
-                os.remove(file_path)
-                print(f"Deleted file: {file_path}")
+# #delete file > 30 days
+# def delete_old_files(folder_path, days_threshold):
+#     today = datetime.now()
+#     for filename in os.listdir(folder_path):
+#         file_path = os.path.join(folder_path, filename)
+#         if os.path.isfile(file_path):
+#             creation_time = datetime.fromtimestamp(os.path.getctime(file_path))
+#             age_in_days = (today - creation_time).days
+#             if age_in_days > days_threshold:
+#                 os.remove(file_path)
+#                 print(f"Deleted file: {file_path}")
 
 if __name__ == "__main__":
     # try:
