@@ -4,8 +4,8 @@ import datetime
 import schedule
 from datetime import date
 from datetime import datetime
-import pywhatkit 
-import os
+#import pywhatkit 
+#import os
 
 # Initialize parameters
 is_recording = False
@@ -54,7 +54,7 @@ def motion_detecting():
                 cv2.putText(frame1, date1, (10,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2)
                
                 
-                print("is it blocking?")
+                print("is it blocking?")#checkpoin
                 alert()
                 break
 
@@ -71,11 +71,10 @@ def motion_detecting():
 
 def start_video_recording():
     global is_recording
-    # Kode rekaman video seperti sebelumnya
     is_recording = True
 
 
-#berhenti merekam video dan tutup jendela
+
 def stop_video_recording():
     diff = cv2.absdiff(frame1, frame2)
     gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
@@ -86,27 +85,27 @@ def stop_video_recording():
 
     global is_recording
     if is_recording:
-        #berhenti merekam video
+        #stop recording
         out.release()
         is_recording = False
 
 
 #scheduling
 def run_scheduling():
-    print("masuk sini....")
+    print("masuk sini....") #checkpoin
 
-    # Jadwalkan proses rekaman video pada pukul 17:00
+    # scheduled at 17:00
     schedule.every().day.at('17:00').do(start_video_recording)
     schedule.every().day.at('17:00').do(motion_detecting)
 
 
-    # Jadwalkan berhenti merekam video pada pukul 9:00 keesokan harinya
+    # scheduled at 9:00 on the next day
     schedule.every().day.at('09:00').do(stop_video_recording)
     #schedule.every(1).minutes.do(stop_video_recording)
 
 
     while True:
-        print("masuk sini juga...")
+        print("masuk sini juga...") #checkpoin
         schedule.run_pending()
         time.sleep(1)
 
