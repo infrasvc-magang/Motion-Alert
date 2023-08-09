@@ -10,7 +10,7 @@ A Real-time motion tracking integrated with WhatsApp and Telegram Notification A
   pip install opencv-python 
   pip install time
   pip install datetime
-  pip install schedule
+  pip install schedule 
   pip install pywhatkit
   pip install telepot
 ```
