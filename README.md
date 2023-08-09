@@ -19,5 +19,5 @@ A Real-time motion tracking integrated with WhatsApp and Telegram Notification A
 
 - Real-time object tracking
 - Records video 
-- Sends a WhatsApp and Telegram notification alert
+- Sends WhatsApp and Telegram notification alert
 - Executes at specific time
