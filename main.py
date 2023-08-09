@@ -5,8 +5,8 @@ import schedule
 from datetime import date
 from datetime import datetime
 import pywhatkit 
-# import os
 import telepot
+# import os
 
 # Initialize parameters
 is_recording = False
@@ -31,11 +31,11 @@ frame1 = frame2
 ret, frame2 = cap.read()
 
 #notify
-def alert1(): #alert dengan WhatsApp Group
+def alert1(): #WhatsApp Group alert
     myobj = datetime.now()
     pywhatkit.sendwhatmsg_to_group("Group_ID", "Motion detected at " + str(myobj.hour) + ":"+ str(myobj.minute)+ ", please check." , myobj.hour , myobj.minute+1 , 10, True, 5)
 
-def alert2(): #alert dengan Telegram Group
+def alert2(): #Telegram Group alert
     myobj = datetime.now()
     token = 'Group_Token'
     receiver_id = 'Chat_ID'
@@ -82,11 +82,10 @@ def motion_detecting():
 
 def start_video_recording():
     global is_recording
-    # Kode rekaman video seperti sebelumnya
+    # record video 
     is_recording = True
 
 
-#berhenti merekam video dan tutup jendela
 def stop_video_recording():
     diff = cv2.absdiff(frame1, frame2)
     gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
@@ -97,7 +96,7 @@ def stop_video_recording():
 
     global is_recording
     if is_recording:
-        #berhenti merekam video
+        #stop record
         out.release()
         is_recording = False
 
@@ -107,13 +106,13 @@ def stop_video_recording():
 def run_scheduling():
     print("masuk sini....") #checkpoin2
 
-    # Jadwalkan proses rekaman video pada pukul 17:00
+    # scheduled at 17:00
     schedule.every().day.at('17:00').do(start_video_recording)
     schedule.every().day.at('17:00').do(motion_detecting)
     # schedule.every().day.at('17:00').do(alert)
 
 
-    # Jadwalkan berhenti merekam video pada pukul 9:00 keesokan harinya
+    # scheduled at 9:00 on the next day
     schedule.every().day.at('09:00').do(stop_video_recording)
     # schedule.every().day.at('09:00').do(alert)
 
@@ -136,6 +135,5 @@ def run_scheduling():
 #                 print(f"Deleted file: {file_path}")
 
 if __name__ == "__main__":
-    # try:
     while True:
         run_scheduling()
