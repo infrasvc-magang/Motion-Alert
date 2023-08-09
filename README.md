@@ -29,3 +29,7 @@ Clone and Run the project
 ```bash
   git clone https://github.com/infrasvc-magang/Motion-Alert.git
 ```
+
+## Documentation
+
+[Documentation](https://docs.google.com/document/d/1V3PMmktIfBRe23GMvj-WfjGaEP3kNbABbnri26Xzpds/edit?usp=sharing)
